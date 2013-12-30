@@ -9,6 +9,9 @@ Sanitize MSISDNS as per mobile Number format. This is specially useful for forma
     MSISDN::Sanitizer.sanitize('00919876543210')
      => ["+919876543210"]
 
+    MSISDN::Sanitizer.sanitize('0987-6543210')
+     => ["+919876543210"]
+
     MSISDN::Sanitizer.sanitize(['00919876543210', '9037 123 456', '04972123465'])
      => ["+919876543210", "+919037123456"]
 

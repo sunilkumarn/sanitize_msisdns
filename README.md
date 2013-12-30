@@ -2,7 +2,7 @@ Sanitize MSISDNS as per mobile number format. This is specially useful for forma
 
 ##Usage
 
-    gem install sanitize_msisdns
+    gem install sanitized_msisdns
 
     require 'msisdn_sanitizer'
 

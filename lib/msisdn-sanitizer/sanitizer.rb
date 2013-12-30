@@ -8,17 +8,18 @@ module MSISDN
     class << self
 
       def sanitize(msisdns, options = {})
+
         options.reverse_merge!(
             :country_code => :in,
             :format => 'international'
         )
 
-        raise(InvalidArgumenTypeException, 'Argument must be a string, or an array.') unless [String, Array, Fixnum].include? msisdns.class
+        raise(InvalidArgumentTypeException, 'Argument must be a string, or an array.') unless [String, Array, Fixnum].include? msisdns.class
         raise(InvalidFormatException, 'Invalid format passed as option.') unless ALLOWED_FORMATS.include? options[:format]
         raise(InvalidCountryCodeException, 'Invalid country code passed as option.') unless ALLOWED_CODES.keys.include? options[:country_code]
 
         msisdn_list =
-            case msisdns.class
+            case msisdns
               when Array
                 msisdns.collect {|msisdn| msisdn.to_s}
               when String
@@ -27,7 +28,7 @@ module MSISDN
                 [msisdns.to_s]
             end
 
-        filtered_list = clean_and_filter(msisdn_list, options[:format])
+        filtered_list = clean_and_filter(msisdn_list, options[:country_code])
         standardize(filtered_list, options[:format])
       end
 

@@ -69,7 +69,7 @@ describe MSISDN::Sanitizer do
   end
 
   it 'raises an exception if the msisdn passed in not a string or array' do
-    expect{ subject.sanitize( {msisdn: 9897090909} ) }.to raise_error InvalidArgumenTypeException
+    expect{ subject.sanitize( {msisdn: 9897090909} ) }.to raise_error InvalidArgumentTypeException
   end
 
   it 'raises an exception if the format provided is not local or international' do
@@ -78,6 +78,27 @@ describe MSISDN::Sanitizer do
 
   it 'raises an exception if the country code passed is not in the list of country codes' do
     expect{ subject.sanitize(['9897090909'],  country_code: 'ne' ) }.to raise_error InvalidCountryCodeException
+  end
+
+  it 'uses the default options of format and country code if no other options are given' do
+    subject.should_receive(:clean_and_filter).with(['9897090909'], :in).and_return([])
+    subject.should_receive(:standardize).with([], 'international').and_return([])
+    subject.sanitize(['9897090909'])
+  end
+
+  it 'uses the format and country code if supplied as arguments' do
+    subject.should_receive(:clean_and_filter).with(['9897090909'], :in).and_return([])
+    subject.should_receive(:standardize).with([], 'local').and_return([])
+    subject.sanitize(['9897090909'], format: 'local', country_code: :in)
+  end
+
+  it 'converts any arguments into a string of arrays' do
+    subject.stub(:standardize)
+    subject.should_receive(:clean_and_filter).exactly(4).times.with(['9897090909'], :in)
+    subject.sanitize(['9897090909'], format: 'local')
+    subject.sanitize('9897090909', format: 'local')
+    subject.sanitize(9897090909, format: 'local')
+    subject.sanitize([9897090909], format: 'local')
   end
 
   it 'returns an array of sanitized msisdns' do

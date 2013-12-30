@@ -1,4 +1,4 @@
-class InvalidArgumenTypeException < StandardError
+class InvalidArgumentTypeException < StandardError
 
 end
 

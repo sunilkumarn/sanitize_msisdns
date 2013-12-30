@@ -1,19 +1,19 @@
 module MSISDN
   class Sanitizer
 
-    # Sanitizes the msisdns
-    # @author Sunil Kumar <sunikumar.gec56@gmail.com>
-    # @param [Array, String] supports msisdn or a list of msisdns.
-    # @param [Hash] options specifying format & country code.
-    # @return [Array] list of sanitized msisdns.
-
-
     ALLOWED_CODES = {in: %w(0091 +91 0)}
     MSISDN_LENGTH = {in: 10}
     ALLOWED_FORMATS = %w( local international )
     CLEANUP_REGEX = /[^0-9A-Za-z+]/
 
     class << self
+
+      # Sanitizes the msisdns
+      #
+      # @author Sunil Kumar <sunikumar.gec56@gmail.com>
+      # @param msisdns [Array, String] msisdn or a list of msisdns.
+      # @param options [Hash] specifying format & country code.
+      # @return [Array] list of sanitized msisdns.
 
       def sanitize(msisdns, options = {})
         options.reverse_merge!(

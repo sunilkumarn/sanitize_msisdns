@@ -1,4 +1,4 @@
-Sanitize MSISDNS as per mobile Number format. This is specially useful for formating Android mobile numbers which are stored in different formats. Currently only Indian MSISDNs are supported.
+Sanitize MSISDNS as per mobile number format. This is specially useful for formating Android mobile numbers which are stored in different formats. Currently only Indian MSISDNs are supported.
 
 ##Usage
 

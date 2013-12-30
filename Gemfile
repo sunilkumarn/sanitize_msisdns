@@ -23,3 +23,4 @@ group :linux do
 end
 
 gem 'mobme_support'
+gem 'yard'

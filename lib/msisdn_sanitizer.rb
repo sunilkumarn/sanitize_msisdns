@@ -1,3 +1,4 @@
+require 'bundler/setup'
 require 'mobme_support'
 
 require_relative 'msisdn-sanitizer/version'

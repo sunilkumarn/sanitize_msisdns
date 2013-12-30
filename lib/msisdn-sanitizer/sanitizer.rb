@@ -1,14 +1,21 @@
 module MSISDN
   class Sanitizer
 
+    # Sanitizes the msisdns
+    # @author Sunil Kumar <sunikumar.gec56@gmail.com>
+    # @param [Array, String] supports msisdn or a list of msisdns.
+    # @param [Hash] options specifying format & country code.
+    # @return [Array] list of sanitized msisdns.
+
+
     ALLOWED_CODES = {in: %w(0091 +91 0)}
+    MSISDN_LENGTH = {in: 10}
     ALLOWED_FORMATS = %w( local international )
     CLEANUP_REGEX = /[^0-9A-Za-z+]/
 
     class << self
 
       def sanitize(msisdns, options = {})
-
         options.reverse_merge!(
             :country_code => :in,
             :format => 'international'
@@ -38,9 +45,9 @@ module MSISDN
         filtered_list = msisdn_list.collect do |msisdn|
           cleaned_msisdn = msisdn.gsub(CLEANUP_REGEX, '')
           next unless cleaned_msisdn
-          last_ten_digits = cleaned_msisdn.slice(-10..-1)
+          last_ten_digits = cleaned_msisdn.slice(-MSISDN_LENGTH[country_code]..-1)
           next unless last_ten_digits
-          prefix_code = cleaned_msisdn.slice(0..-11)
+          prefix_code = cleaned_msisdn.slice(0..(-MSISDN_LENGTH[country_code]-1))
           (ALLOWED_CODES[country_code] << '').include?(prefix_code) ? last_ten_digits : nil
         end
         filtered_list.compact

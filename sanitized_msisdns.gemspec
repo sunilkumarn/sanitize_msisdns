@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = 'sunilkumar.gec56@gmail.com'
   s.homepage    = 'http://tech.sunilnkumar.com/'
   s.summary     = %q{Sanitizes msisdns}
-  s.description = %q{Sanitized the msisdns. Helpful for proper formating of Android mobile numbers. }
+  s.description = %q{ Sanitizes the msisdns. Especially helpful for proper formatting of android mobile numbers. }
 
   s.add_dependency 'mobme_support'
 
@@ -22,8 +22,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'yard'
   s.add_development_dependency 'simplecov-rcov'
   s.add_development_dependency 'rdiscount'
-  s.add_development_dependency 'pry'
-  s.add_development_dependency 'pry-debugger'
 
   s.files              = `git ls-files`.split("\n") - %w(Gemfile.lock .ruby-version)
   s.test_files         = `git ls-files -- {spec}/*`.split("\n")

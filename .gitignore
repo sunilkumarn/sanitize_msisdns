@@ -9,3 +9,4 @@ yardoc/
 *~
 .idea/
 doc/
+vendor/

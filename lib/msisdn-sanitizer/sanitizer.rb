@@ -21,7 +21,7 @@ module MSISDN
             :format => 'international'
         )
 
-        raise(InvalidArgumentTypeException, 'Argument must be a string, or an array.') unless [String, Array, Fixnum].include? msisdns.class
+        raise(InvalidArgumentTypeException, 'Argument must be a string, fixnum or an array.') unless [String, Array, Fixnum].include? msisdns.class
         raise(InvalidFormatException, 'Invalid format passed as option.') unless ALLOWED_FORMATS.include? options[:format]
         raise(InvalidCountryCodeException, 'Invalid country code passed as option.') unless ALLOWED_CODES.keys.include? options[:country_code]
 

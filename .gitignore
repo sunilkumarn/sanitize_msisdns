@@ -1,0 +1,10 @@
+vendor/bundle/
+.bundle/
+coverage/
+spec/reports
+*.log
+.yardoc
+/*.gem
+yardoc/
+*~
+.idea/

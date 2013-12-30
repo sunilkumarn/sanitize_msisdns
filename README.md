@@ -1,0 +1,1 @@
+A small gem to sanitize MSISDNS as per mobile Number format. This is specially useful for building apis for Android or Iphone apps where the MSISDN is stored in different formats. Currently only indian numbers are supported. 

@@ -21,7 +21,7 @@ module MSISDN
             :format => 'international'
         )
 
-        raise(InvalidArgumentTypeException, 'Argument must be a string, fixnum or an array.') unless [String, Array, Fixnum].include? msisdns.class
+        raise(InvalidArgumentTypeException, 'Argument must be a string, integer or an array.') unless [String, Array, Integer, Fixnum].include? msisdns.class
         raise(InvalidFormatException, 'Invalid format passed as option.') unless ALLOWED_FORMATS.include? options[:format]
         raise(InvalidCountryCodeException, 'Invalid country code passed as option.') unless ALLOWED_CODES.keys.include? options[:country_code]
 
@@ -31,8 +31,10 @@ module MSISDN
                 msisdns.collect {|msisdn| msisdn.to_s}
               when String
                 [msisdns]
-              when Fixnum
+              when Integer
                 [msisdns.to_s]
+              when Fixnum
+                [msisdn.to_s]
             end
 
         filtered_list = clean_and_filter(msisdn_list, options[:country_code])
